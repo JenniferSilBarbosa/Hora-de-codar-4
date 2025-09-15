@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Estudantes</title>
+</head>
+<body>
+  <h2>Cadastro de Estudantes</h2>
+  <input type="text" id="nome" placeholder="Digite o nome do estudante">
+  <button onclick="cadastrar()">Cadastrar</button>
+  <button onclick="parar()">PARE</button>
+
+  <h3 id="resultado"></h3>
+
+  <script>
+    var estudantes = [];
+
+    function cadastrar() {
+      var nome = document.getElementById("nome").value.trim();
+      if (nome !== "" && nome.toUpperCase() !== "PARE") {
+        estudantes.push(nome);
+        document.getElementById("nome").value = "";
+        document.getElementById("nome").focus();
+      }
+    }
+
+    function parar() {
+      var saida = "Quantidade de estudantes cadastrados: " + estudantes.length + "\n\n";
+      saida += "Lista:\n";
+      for (var i = 0; i < estudantes.length; i++) {
+        saida += (i + 1) + ". " + estudantes[i] + "\n";
+      }
+      document.getElementById("resultado").innerText = saida;
+    }
+  </script>
+</body>
+</html>

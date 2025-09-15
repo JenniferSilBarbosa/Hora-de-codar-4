@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Compras</title>
+</head>
+<body>
+  <h2>Lista de Compras</h2>
+  <p id="lista"></p>
+
+  <input type="text" id="fruta" placeholder="Digite uma fruta para remover">
+  <button onclick="removerFruta()">Remover</button>
+
+  <p id="mensagem"></p>
+
+  <script>
+    var frutas = ["Maçã", "Banana", "Laranja", "Uva", "Abacaxi"];
+    atualizarLista();
+
+    function atualizarLista() {
+      document.getElementById("lista").innerText = "Lista atual: " + frutas.join(", ");
+    }
+
+    function removerFruta() {
+      if (frutas.length === 0) {
+        document.getElementById("mensagem").innerText = "Lista de compras finalizada";
+        return;
+      }
+
+      var fruta = document.getElementById("fruta").value.trim();
+      var indice = frutas.indexOf(fruta);
+
+      if (indice !== -1) {
+        frutas.splice(indice, 1);
+        document.getElementById("mensagem").innerText = fruta + " foi retirada da lista.";
+      } else {
+        document.getElementById("mensagem").innerText = "Fruta indisponível no nosso mercado.";
+      }
+
+      atualizarLista();
+
+      if (frutas.length === 0) {
+        document.getElementById("mensagem").innerText = "Lista de compras finalizada";
+      }
+
+      document.getElementById("fruta").value = "";
+      document.getElementById("fruta").focus();
+    }
+  </script>
+</body>
+</html>
